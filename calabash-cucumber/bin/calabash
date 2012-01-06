@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+features_dir = File.join( FileUtils.pwd, "features" )
+
+if File.exists?( features_dir ) 
+  puts "A features directory already exists. I won't overwrite it. Giving up."
+  exit 1
+else
+  puts "I'm about to create a subdirectory called features which will contain all your calabash tests. Please hit return to confirm that's what you want."
+  exit 2 unless STDIN.gets.chomp == ''
+end
+
+source_dir = File.join( File.dirname(__FILE__), '..', 'features-skeleton' )
+
+FileUtils.cp_r( source_dir, features_dir )
+
+puts "features subdirectory created. Try starting you app in the iOS simulator using the Calabash target (see calabash-ios-server for how to create the target)."
+puts "Then try executing \n\nSTEP_PAUSE=2 OS=ios4 DEVICE=iphone cucumber"
+puts "\n (replace ios4 with ios5 if running iOS 5.x simulator)."
