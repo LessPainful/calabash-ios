@@ -85,7 +85,7 @@ Then /^I enter "([^\"]*)" into input field number (\d+)$/ do |text, index|
 end
 
 When /^I clear "([^\"]*)"$/ do |name|
-  When %Q|I type "" into the "#{name}" text field|
+  When %Q|I enter "" into the "#{name}" text field|
 end
 
 Then /^I clear input field number (\d+)$/ do |index|
