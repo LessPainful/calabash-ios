@@ -1,21 +1,24 @@
 This guide explains how to setup and use Calabash for iOS.
 =============================================================
 
-Note: To use Calabash with your app, you must first link with the
-calabash.framework as described in the README in the
-`../frameworks` directory.
+*Note*: To use Calabash with your iOS app, you must first link your
+app with the `calabash.framework` as described in the README in the
+`../frameworks/` directory.
 
-After completing this guide you will be able to run
-tests locally against the iOS Simulator. You can also
-interactively explore the sample application using the Ruby
-irb console.
+After completing this guide you will be able to run tests locally
+against the iOS Simulator. You can also interactively explore the
+sample application using the Ruby irb console.
 
-After you install this client project, you can download the
-LessPainful-ios-server project to test you own app.
+Finally, you can run your Calabash tests on real physical,
+non-jailbroken iOS devices (iPad, iPhone, iPod Touch) using the
+LessPainful service at
 
-(https://github.com/LessPainful/LessPainful_ios_server)
+(http://www.lesspainful.com)
 
-This guide takes approximately 10 minutes to complete.
+The LessPainful service offers test reports that compares
+test results and screenshots on multiple iDevices.
+
+This guide takes approximately 5-10 minutes to complete.
 
 Installing the client.
 ----------------------
@@ -125,7 +128,7 @@ The filter: `index:1` means that it is the second tab-bar button that should be 
 
 ### Accessibility
 
-In general UI views are found using accesibility labels. To use those in the simulator they must be enabled.
+In general UI views are found using accessibility labels. To use those in the simulator they must be enabled.
 
 * Press the "home-screen" button in the iOS Simulator
 * Scroll left and open the Settings app insied iOS Simulator
