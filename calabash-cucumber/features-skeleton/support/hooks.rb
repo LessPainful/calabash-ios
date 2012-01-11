@@ -1,7 +1,9 @@
+CALABASH_COUNT = {:step_index => 0, :step_line => nil}
+
 Before do |scenario|
   begin
-    Step_index = 0
-    Step_line = scenario.raw_steps[Step_index].line
+    CALABASH_COUNT[:step_index] = 0
+    CALABASH_COUNT[:step_line] = scenario.raw_steps[CALABASH_COUNT[:step_index]].line
   rescue Exception => e
     puts "#{Time.now} - Exception:#{e}"
   end
@@ -9,6 +11,7 @@ end
 
 AfterStep do |scenario|
   #Håndtering af den situation hvor Feature/Scenario/steps er mulitline
-  Step_index = Step_index + 1
-  Step_line = scenario.raw_steps[Step_index].line unless scenario.raw_steps[Step_index].nil?
+  CALABASH_COUNT[:step_index] = CALABASH_COUNT[:step_index] + 1
+  raw = scenario.raw_steps[CALABASH_COUNT[:step_index]]
+  CALABASH_COUNT[:step_line] = raw.line unless raw.nil?
 end

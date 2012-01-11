@@ -140,13 +140,10 @@ module Operations
     data = nil
     if (File.exists?(recording))
       data = File.read(recording)
-      puts "found #{recording}"
     elsif (File.exists?("#{rec_dir}/#{recording}"))
       data = File.read("#{rec_dir}/#{recording}")
-      puts "#{rec_dir}/#{recording}"
     elsif (File.exists?("#{DATA_PATH}/resources/#{recording}"))
       data = File.read("#{DATA_PATH}/resources/#{recording}")
-      puts "#{DATA_PATH}/resources/#{recording}"
     else
       raise "Playback not found: #{recording} (searched for #{recording} in #{Dir.pwd}, #{rec_dir}, #{DATA_PATH}/resources"
     end
@@ -204,7 +201,7 @@ module Operations
       f = %x[idevicescreenshot -u #{ENV['UUID']}]
       line=f.strip().split("\n").last
       filename=line.split(" ").last
-      outfile = "#{ENV['SCREENSHOT_PATH_PREFIX']}_#{Step_line}.png"
+      outfile = "#{ENV['SCREENSHOT_PATH_PREFIX']}_#{CALABASH_COUNT[:step_line]}.png"
       if File.exist?filename
         puts "converting screenshot: #{filename} to #{outfile}"
         system("convert #{filename} #{outfile}")
@@ -213,9 +210,7 @@ module Operations
       end
     else
       res = http({:method =>:get, :path => 'screenshot'})
-      @sc_count = @sc_count || 0
-      path = "screenshot_#{@sc_count}.png"
-      @sc_count += 1
+      path = "screenshot_#{CALABASH_COUNT[:step_line]}.png"
       File.open(path,'wb') do |f|
         f.write res
       end

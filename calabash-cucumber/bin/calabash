@@ -17,5 +17,5 @@ source_dir = File.join( File.dirname(__FILE__), '..', 'features-skeleton' )
 FileUtils.cp_r( source_dir, features_dir )
 
 puts "features subdirectory created. Try starting you app in the iOS simulator using the Calabash target (see calabash-ios-server for how to create the target)."
-puts "Then try executing \n\nSTEP_PAUSE=2 OS=ios4 DEVICE=iphone cucumber"
-puts "\n (replace ios4 with ios5 if running iOS 5.x simulator)."
+puts "Then try executing \n\nSTEP_PAUSE=2 OS=ios5 DEVICE=iphone cucumber"
+puts "\n (replace ios5 with ios4 if running iOS 4.x simulator. Replace iphone with ipad if running iPad simulator.)."

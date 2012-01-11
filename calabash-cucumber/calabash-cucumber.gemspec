@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency( "cucumber" )
-  s.add_dependency( "rspec", [">=2.0"] )
+  s.add_dependency( "rspec", ["2.7.0"] )
   s.add_dependency( "json" )
   s.add_dependency( "net-http-persistent" )
 end

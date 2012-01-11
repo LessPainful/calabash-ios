@@ -1,3 +1,9 @@
 calabash-cucumber/pkg
 calabash-cucumber/Markdown.pl
 calabash-cucumber/.idea
+examples/LPSimpleExample.xcodeproj/project.xcworkspace
+examples/LPSimpleExample.xcodeproj/xcuserdata/krukow.xcuserdatad
+examples/LPSimpleExample.xcodeproj/project.xcworkspace/xcuserdata
+examples/LPSimpleExample.xcodeproj/xcuserdata/krukow.xcuserdatad
+.idea/*
+examples/LPSimpleExample.xcodeproj/xcuserdata
