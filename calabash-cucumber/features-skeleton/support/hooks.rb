@@ -7,11 +7,6 @@ Before do |scenario|
   end
 end
 
-After do |scenario|
-  #TODO
-  sleep(2)
-end
-
 AfterStep do |scenario|
   #Håndtering af den situation hvor Feature/Scenario/steps er mulitline
   Step_index = Step_index + 1
