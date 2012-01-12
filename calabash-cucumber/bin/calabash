@@ -3,19 +3,71 @@
 require 'fileutils'
 
 features_dir = File.join( FileUtils.pwd, "features" )
-
-if File.exists?( features_dir ) 
-  puts "A features directory already exists. I won't overwrite it. Giving up."
-  exit 1
-else
-  puts "I'm about to create a subdirectory called features which will contain all your calabash tests. Please hit return to confirm that's what you want."
-  exit 2 unless STDIN.gets.chomp == ''
-end
-
 source_dir = File.join( File.dirname(__FILE__), '..', 'features-skeleton' )
 
-FileUtils.cp_r( source_dir, features_dir )
+if File.exists?( features_dir )
+  if (ARGV.length == 1 && ARGV[0] == 'update')
+    features_dir =  File.join( FileUtils.pwd, "features_template")
+    if File.exists?( features_dir )
+      puts "Working directory #{features_dir} already exist."
+      puts "Please move it and run calabash update again to continue."
+      exit 2
+    end
+    FileUtils.cp_r( source_dir, features_dir)
+    puts <<EOS
 
-puts "features subdirectory created. Try starting you app in the iOS simulator using the Calabash target (see calabash-ios-server for how to create the target)."
-puts "Then try executing \n\nSTEP_PAUSE=2 OS=ios5 DEVICE=iphone cucumber"
-puts "\n (replace ios5 with ios4 if running iOS 4.x simulator. Replace iphone with ipad if running iPad simulator.)."
+----------- Instructions -----------
+
+Copied files to #{features_dir}.
+You must manually merge files from
+
+  features_template/step_definitions
+  features_template/support
+
+To your ./features dir.
+
+If you haven't edited any of the files:
+
+  features/support/env.rb
+  features/support/hooks.rb
+  features/step_definitions/ilesspainful_steps.rb
+
+You can simply copy files from
+
+  features_template/step_definitions
+  features_template/support
+
+to the corresponding dirs in features.
+You must also delete: features/step_definitions/ilesspainful_steps.rb
+
+Otherwise, if you have edited any of the files,
+you must manually merge them with those of features_template.
+
+It is important that you remove any reference to
+the ilesspainfulclient-cucumber gem if present in your files.
+
+When you are done, you should delete features_template.
+
+If in doubt, contact Karl Krukow <karl@lesspainful.com>
+-----------------------------------
+EOS
+    exit
+  else
+    puts "A features directory already exists. I won't overwrite it. Giving up."
+    puts "Run calabash update for update instructions."
+  end
+  exit 1
+else
+  puts "I'm about to create a subdirectory called features."
+  puts "features will contain all your calabash tests."
+  puts "Please hit return to confirm that's what you want."
+  exit 2 unless STDIN.gets.chomp == ''
+
+  FileUtils.cp_r( source_dir, features_dir )
+
+  puts "features subdirectory created. Try starting you app in the iOS simulator "
+  puts "using the Calabash target (see calabash-ios-server for how to create the target).\n"
+  puts "Then try executing \n\nSTEP_PAUSE=2 OS=ios5 DEVICE=iphone cucumber"
+  puts "\n (replace ios5 with ios4 if running iOS 4.x simulator.\nReplace iphone with ipad if running iPad simulator.).\n"
+
+end
